@@ -31,4 +31,5 @@ public class LotteryController {
     public void deleteLottery(@PathVariable Long id) {
         lotteryService.deleteOneLottery(id);
     }
+
 }
