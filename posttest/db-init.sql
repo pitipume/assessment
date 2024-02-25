@@ -18,7 +18,7 @@
 CREATE TABLE lottery
 (
     id          SERIAL PRIMARY KEY,
-    ticket      VARCHAR(6) UNIQUE NOT NULL,
+    ticket      VARCHAR(6),
     price       INT,
     amount      INT
 );
@@ -40,10 +40,15 @@ VALUES ('123456', 80, 1);
 -- user_ticket Table
 CREATE TABLE user_ticket
 (
+    id          SERIAL PRIMARY KEY,
     userId      VARCHAR(10),
-    ticketId    INT
+    ticketId    VARCHAR(6),
+    price       INT,
+    amount      INT
 );
 
 -- Initial data
-INSERT INTO user_ticket(userId, ticketId)
-VALUES ('0000000001', 123456);
+INSERT INTO user_ticket(userId, ticketId, price, amount)
+VALUES ('0000000001', '000001', 80, 1);
+INSERT INTO user_ticket(userId, ticketId, price, amount)
+VALUES ('0000000002', '000002', 80, 1);
