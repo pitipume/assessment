@@ -9,6 +9,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface UserLotteryRepo extends JpaRepository<UserLotteryEntity, Long> {
+
+    //Story EXP04
     @Query("SELECT u.ticketId FROM UserLotteryEntity u")
     List<String> listAllTicket();
 //    List<UserLotteryEntity> findByTicketId(String ticketId);

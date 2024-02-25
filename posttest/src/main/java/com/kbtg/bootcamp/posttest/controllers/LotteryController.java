@@ -19,20 +19,23 @@ public class LotteryController {
         this.lotteryService = lotteryService;
     }
 
-    @PostMapping("/admin/lotteries")
-    public LotteryEntity addLotteryEntity(@RequestBody LotteryEntity ticket) {
-        return lotteryService.addLotteryEntity(ticket);
-    }
+//    @PostMapping("/admin/lotteries")
+//    public LotteryEntity addLotteryEntity(@RequestBody LotteryEntity ticket) {
+//        return lotteryService.addLotteryEntity(ticket);
+//    }
+
+    //test show all lottery details
     @RequestMapping("/api/lotteries")
     public List<LotteryEntity> getLottery() {
         return lotteryService.getAllLotteries();
     }
+
+    //for user who wants to list all lottery ticket to choose and buy
     @GetMapping("/lotteries")
     public LotteryResponse getLotteryTickets() {
         List<String> tickets = lotteryService.getAllTickets();
         return new LotteryResponse(tickets);
     }
-
     private static class LotteryResponse {
         private List<String> tickets;
         public LotteryResponse(List<String> tickets) {
@@ -46,30 +49,35 @@ public class LotteryController {
         }
     }
 
+    //basic CRUD for admin
     //create
-    @PostMapping("")
+    @PostMapping("/admin/post")
     public LotteryEntity createLottery(@RequestBody LotteryEntity lotteryEntity) {
         return lotteryService.createLottery(lotteryEntity);
     }
     //read
-    @GetMapping("")
+    @GetMapping("/admin/get")
     public List<LotteryEntity> getAllLotteries() {
         return lotteryService.getAllLotteries();
     }
-    @GetMapping("/{id}")
+    @GetMapping("/admin/get/{id}")
     public LotteryEntity getLotteryById(@PathVariable("id") Long id) {
         return lotteryService.getLotteryById(id);
     }
     //update
-    @PutMapping("/{id}")
+    @PutMapping("/admin/put/{id}")
     public LotteryEntity updateLottery(@PathVariable("id") Long id, @RequestBody LotteryEntity updatedLottery) {
         return lotteryService.updateLottery(id, updatedLottery);
     }
     //delete
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admin/delete/{id}")
     public void deleteLottery(@PathVariable("id") Long id) {
         lotteryService.deleteLottery(id);
     }
+
+
+
+
 
 //    @RequestMapping("/admin/lotteries/{id}")
 //    public LotteryEntity getLottery(@PathVariable long id) {
@@ -89,5 +97,8 @@ public class LotteryController {
 //    public void deleteLottery(@PathVariable Long id) {
 //        lotteryService.deleteOneLottery(id);
 //    }
+
+
+
 
 }

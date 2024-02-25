@@ -13,18 +13,18 @@ import java.util.stream.Collectors;
 public class LotteryService {
 
     private final LotteryRepo lotteryRepo;
-
     @Autowired
     public LotteryService(LotteryRepo lotteryRepo) {
         this.lotteryRepo = lotteryRepo;
     }
-    public LotteryEntity addLotteryEntity(LotteryEntity ticket) {
-        return lotteryRepo.save(ticket);
-    }
+//    public LotteryEntity addLotteryEntity(LotteryEntity ticket) {
+//        return lotteryRepo.save(ticket);
+//    }
     public List<String> getAllTickets() {
         return lotteryRepo.findAllTicket();
     }
 
+    //basic CRUD for admin
     //create
     public LotteryEntity createLottery(LotteryEntity lotteryEntity) {
         return lotteryRepo.save(lotteryEntity);
@@ -52,6 +52,8 @@ public class LotteryService {
     }
 
 
+
+
 //    public List<String> getAllTickets() {
 //        List<LotteryEntity> lotteryEntities = lotteryRepo.findAll();
 //        return lotteryEntities.stream()
@@ -74,4 +76,7 @@ public class LotteryService {
 //    public void deleteOneLottery(Long id) {
 //        lotteryRepo.deleteById(id);
 //    }
+
+
+
 }

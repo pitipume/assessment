@@ -17,6 +17,7 @@ public class UserLotteryService {
         this.userLotteryRepo = userLotteryRepo;
     }
 
+    //Story EXP04
     public List<String> userGetAllTickets() {
         return userLotteryRepo.listAllTicket();
     }

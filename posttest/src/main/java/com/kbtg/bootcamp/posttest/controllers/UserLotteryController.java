@@ -19,12 +19,13 @@ public class UserLotteryController {
         this.userLotteryService = userLotteryService;
     }
 
+
+    //Story EXP04
     @GetMapping("/users/{userId}/lotteries")
     public UserLotteryController.UserLotteryResponse userGetLotteryTickets() {
         List<String> ticketIds = userLotteryService.userGetAllTickets();
         return new UserLotteryController.UserLotteryResponse(ticketIds);
     }
-
     private static class UserLotteryResponse {
         private List<String> ticketId;
         public UserLotteryResponse(List<String> ticketId) {
@@ -37,6 +38,8 @@ public class UserLotteryController {
             this.ticketId = ticketId;
         }
     }
+
+
 
 //    @GetMapping("/users/{userId}/lotteries")
 //    public UserLotteryResponse getAllUserLotteryTickets(@PathVariable("userId") String userId) {
@@ -82,4 +85,6 @@ public class UserLotteryController {
 //            this.totalCount = totalCount;
 //        }
 //    }
+
+
 }
