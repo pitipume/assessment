@@ -10,5 +10,6 @@ public interface LotteryRepo extends JpaRepository<LotteryEntity, Long> {
 
     @Query("SELECT l.ticket FROM LotteryEntity l")
     List<String> findAllTicket();
+    //test commit
 
 }
