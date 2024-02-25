@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,12 +21,36 @@ public class LotteryService {
     public LotteryEntity addLotteryEntity(LotteryEntity ticket) {
         return lotteryRepo.save(ticket);
     }
-    public List<LotteryEntity> getAllLotteries() {
-        return lotteryRepo.findAll();
-    }
     public List<String> getAllTickets() {
         return lotteryRepo.findAllTicket();
     }
+
+    //create
+    public LotteryEntity createLottery(LotteryEntity lotteryEntity) {
+        return lotteryRepo.save(lotteryEntity);
+    }
+    //read
+    public List<LotteryEntity> getAllLotteries() {
+        return lotteryRepo.findAll();
+    }
+    public LotteryEntity getLotteryById(Long id) {
+        Optional<LotteryEntity> lotteryOptional = lotteryRepo.findById(id);
+        return lotteryOptional.orElse(null);
+    }
+    //update
+    public LotteryEntity updateLottery(Long id, LotteryEntity updatedLottery) {
+        if (lotteryRepo.existsById(id)) {
+            updatedLottery.setId();
+            return  lotteryRepo.save(updatedLottery);
+        } else {
+            return null;
+        }
+    }
+    //delete
+    public void deleteLottery(Long id) {
+        lotteryRepo.deleteById(id);
+    }
+
 
 //    public List<String> getAllTickets() {
 //        List<LotteryEntity> lotteryEntities = lotteryRepo.findAll();

@@ -29,9 +29,13 @@ public class LotteryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonProperty("ticket")
     private String ticket;
+    @JsonProperty("price")
     private int price;
+    @JsonProperty("amount")
     private int amount;
+
     public Long getId() {
         return id;
     }

@@ -46,21 +46,46 @@ public class LotteryController {
         }
     }
 
-//    @RequestMapping("/api/lotteries/{id}")
+    //create
+    @PostMapping("")
+    public LotteryEntity createLottery(@RequestBody LotteryEntity lotteryEntity) {
+        return lotteryService.createLottery(lotteryEntity);
+    }
+    //read
+    @GetMapping("")
+    public List<LotteryEntity> getAllLotteries() {
+        return lotteryService.getAllLotteries();
+    }
+    @GetMapping("/{id}")
+    public LotteryEntity getLotteryById(@PathVariable("id") Long id) {
+        return lotteryService.getLotteryById(id);
+    }
+    //update
+    @PutMapping("/{id}")
+    public LotteryEntity updateLottery(@PathVariable("id") Long id, @RequestBody LotteryEntity updatedLottery) {
+        return lotteryService.updateLottery(id, updatedLottery);
+    }
+    //delete
+    @DeleteMapping("/{id}")
+    public void deleteLottery(@PathVariable("id") Long id) {
+        lotteryService.deleteLottery(id);
+    }
+
+//    @RequestMapping("/admin/lotteries/{id}")
 //    public LotteryEntity getLottery(@PathVariable long id) {
 //        return lotteryService.getOneLottery(id);
 //    }
 //
-//    @RequestMapping(method = RequestMethod.POST, value = "/api/lotteries")
+//    @RequestMapping(method = RequestMethod.POST, value = "/admin/lotteries")
 //    public String addLottery(@RequestBody LotteryEntity lottery) {
 //        return lotteryService.addOneLottery(lottery);
 //    }
 //
-//    @RequestMapping(method = RequestMethod.PUT, value = "/api/lotteries/{id}")
+//    @RequestMapping(method = RequestMethod.PUT, value = "/admin/lotteries/{id}")
 //    public void updateLottery(@PathVariable long id, @RequestBody LotteryEntity lottery) {
 //        lotteryService.updateOneLottery(id, lottery);
 //    }
-//    @RequestMapping(method = RequestMethod.DELETE, value = "api/lotteries/{id}")
+//    @RequestMapping(method = RequestMethod.DELETE, value = "/admin/lotteries/{id}")
 //    public void deleteLottery(@PathVariable Long id) {
 //        lotteryService.deleteOneLottery(id);
 //    }
