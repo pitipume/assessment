@@ -44,11 +44,25 @@ public class UserLotteryController {
 //    }
     //Story EXP03
     @PostMapping("/users/{userId}/lotteries/{ticketId}")
-    public ResponseEntity<UserLotteryEntity> buyLotteryTicket(@PathVariable("userId") String userId, @PathVariable("ticketId") String ticketId) {
+    public ResponseEntity<StoryExp03Response> buyLotteryTicket(@PathVariable("userId") String userId, @PathVariable("ticketId") String ticketId) {
         int price = 80;
         int amount = 1;
         UserLotteryEntity boughtTicket = userLotteryService.buyLottery(userId, ticketId, price, amount);
-        return new ResponseEntity<>(boughtTicket, HttpStatus.CREATED);
+        StoryExp03Response response = new StoryExp03Response(boughtTicket.getId());
+        //        return new ResponseEntity<>(boughtTicket.getId(), HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+    public class StoryExp03Response {
+        private Long id;
+        public StoryExp03Response(Long id) {
+            this.id = id;
+        }
+        public Long getId() {
+            return id;
+        }
+        public void setId(Long id) {
+            this.id = id;
+        }
     }
 
     //Story EXP04
