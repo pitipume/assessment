@@ -1,19 +1,4 @@
 
---CREATE TABLE lottery (
---    id SERIAL PRIMARY KEY,
---    ticket VARCHAR(255) NOT NULL,
---    price NUMERIC NOT NULL,
---    amount INTEGER NOT NULL
---);
---
---CREATE TABLE user_ticket (
---    id SERIAL PRIMARY KEY,
---    userId INTEGER,
---    ticketId INTEGER
-----    FOREIGN KEY (userId) REFERENCES users(id),
-----    FOREIGN KEY (ticketId) REFERENCES lottery(id)
---);
-
 -- lottery Table
 CREATE TABLE lottery
 (
@@ -41,8 +26,8 @@ VALUES ('123456', 80, 1);
 CREATE TABLE user_ticket
 (
     id          SERIAL PRIMARY KEY,
-    user_id      VARCHAR(10) NOT NULL,
-    ticket_id    VARCHAR(6) NOT NULL,
+    user_id      VARCHAR(10),
+    ticket_id    VARCHAR(6),
     price       INT,
     amount      INT
 );

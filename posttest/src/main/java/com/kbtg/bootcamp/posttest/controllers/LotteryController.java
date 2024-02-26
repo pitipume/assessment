@@ -13,6 +13,7 @@ import java.util.List;
 public class LotteryController {
 
     //---------------------------------------------------Intro----------------------------------------------------------
+
     private final LotteryService lotteryService;
     @Autowired
     public LotteryController(LotteryService lotteryService) {
@@ -25,7 +26,9 @@ public class LotteryController {
         return lotteryService.showTable1();
     }
 
+
     //-------------------------------------------basic CRUD for admin---------------------------------------------------
+
     //create
     @PostMapping("/admin/post")
     public LotteryEntity createLottery(@RequestBody LotteryEntity lotteryEntity) {
@@ -52,15 +55,9 @@ public class LotteryController {
     }
 
 
-
     // -------------------------------------------------Story EXP------------------------------------------------------
+
     //Story EXP01
-//    @PostMapping("/admin/lotteries")
-//    public ResponseEntity<String> addLottery(@RequestBody LotteryEntity lotteryEntity) {
-//        LotteryEntity createdLottery = lotteryService.createLottery(lotteryEntity);
-//        String responseBody = "'ticket': " + createdLottery.getTicket();
-//        return ResponseEntity.status(HttpStatus.CREATED).body(responseBody);
-//    }
     @PostMapping("/admin/lotteries")
     public ResponseEntity<String> addLottery(@RequestBody LotteryEntity lotteryEntity) {
         lotteryService.createLottery(lotteryEntity);
@@ -85,33 +82,5 @@ public class LotteryController {
             this.tickets = tickets;
         }
     }
-
-
-
-
-
-//--------------------------------------------------------END-----------------------------------------------------------
-
-//    @RequestMapping("/admin/lotteries/{id}")
-//    public LotteryEntity getLottery(@PathVariable long id) {
-//        return lotteryService.getOneLottery(id);
-//    }
-//
-//    @RequestMapping(method = RequestMethod.POST, value = "/admin/lotteries")
-//    public String addLottery(@RequestBody LotteryEntity lottery) {
-//        return lotteryService.addOneLottery(lottery);
-//    }
-//
-//    @RequestMapping(method = RequestMethod.PUT, value = "/admin/lotteries/{id}")
-//    public void updateLottery(@PathVariable long id, @RequestBody LotteryEntity lottery) {
-//        lotteryService.updateOneLottery(id, lottery);
-//    }
-//    @RequestMapping(method = RequestMethod.DELETE, value = "/admin/lotteries/{id}")
-//    public void deleteLottery(@PathVariable Long id) {
-//        lotteryService.deleteOneLottery(id);
-//    }
-
-
-
 
 }

@@ -1,6 +1,5 @@
 package com.kbtg.bootcamp.posttest.entities;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -15,16 +14,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name = "lottery")
 public class LotteryEntity {
-
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
-//    @JsonProperty("ticket")
-//    private String ticket;
-//    @JsonProperty("price")
-//    private int price;
-//    @JsonProperty("amount")
-//    private int amount;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,4 +49,5 @@ public class LotteryEntity {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
 }
