@@ -1,12 +1,12 @@
 package com.kbtg.bootcamp.posttest.controllers;
 
 
+import com.kbtg.bootcamp.posttest.dto.LotteryResponse;
+import com.kbtg.bootcamp.posttest.entities.LotteryEntity;
 import com.kbtg.bootcamp.posttest.entities.UserLotteryEntity;
 import com.kbtg.bootcamp.posttest.services.UserLotteryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,8 +19,28 @@ public class UserLotteryController {
         this.userLotteryService = userLotteryService;
     }
 
+    //show user_ticket table2
+    @RequestMapping("/user_ticket")
+    public List<UserLotteryEntity> showTable2() {
+        return userLotteryService.showTable2();
+    }
+
+    //Story EXP03
+    //buy lottery
+    @PostMapping("/users/post")
+    public UserLotteryEntity buyLottery(@RequestBody UserLotteryEntity userLotteryEntity) {
+        return userLotteryService.buyLottery(userLotteryEntity);
+    }
+
+    //Story EXP05
+    //sell lottery
+    @DeleteMapping("/users/{userId}/lotteries/{ticketId}")
+    public void sellLottery(@PathVariable("id") Long id) {
+        userLotteryService.sellLottery(id);
+    }
 
     //Story EXP04
+    //user see admin lottery before buy
     @GetMapping("/users/{userId}/lotteries")
     public UserLotteryController.UserLotteryResponse userGetLotteryTickets() {
         List<String> ticketIds = userLotteryService.userGetAllTickets();

@@ -17,9 +17,14 @@ public class LotteryService {
     public LotteryService(LotteryRepo lotteryRepo) {
         this.lotteryRepo = lotteryRepo;
     }
-//    public LotteryEntity addLotteryEntity(LotteryEntity ticket) {
-//        return lotteryRepo.save(ticket);
-//    }
+
+    //show lottery table1
+    public List<LotteryEntity> showTable1() {
+        return lotteryRepo.findAll();
+    }
+
+
+    //for user who wants to list all lottery ticket to choose and buy
     public List<String> getAllTickets() {
         return lotteryRepo.findAllTicket();
     }
@@ -28,10 +33,6 @@ public class LotteryService {
     //create
     public LotteryEntity createLottery(LotteryEntity lotteryEntity) {
         return lotteryRepo.save(lotteryEntity);
-    }
-    //read
-    public List<LotteryEntity> getAllLotteries() {
-        return lotteryRepo.findAll();
     }
     public LotteryEntity getLotteryById(Long id) {
         Optional<LotteryEntity> lotteryOptional = lotteryRepo.findById(id);

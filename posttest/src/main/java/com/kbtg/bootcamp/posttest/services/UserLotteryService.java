@@ -1,12 +1,15 @@
 package com.kbtg.bootcamp.posttest.services;
 
 
+import com.kbtg.bootcamp.posttest.dto.LotteryResponse;
+import com.kbtg.bootcamp.posttest.entities.LotteryEntity;
 import com.kbtg.bootcamp.posttest.entities.UserLotteryEntity;
 import com.kbtg.bootcamp.posttest.repos.UserLotteryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -17,7 +20,30 @@ public class UserLotteryService {
         this.userLotteryRepo = userLotteryRepo;
     }
 
+    //show user_ticket table2
+    public List<UserLotteryEntity> showTable2() {
+        return userLotteryRepo.findAll();
+    }
+
+    //Story EXP03
+    //buy lottery
+    public UserLotteryEntity buyLottery(UserLotteryEntity userLotteryEntity) {
+        return userLotteryRepo.save(userLotteryEntity);
+    }
+    //test buy lottery
+//    public LotteryResponse buyLotteryTicket(String userId, String ticketId) {
+//        // Implement logic to buy lottery ticket and return response
+//        return new LotteryResponse("1");
+//    }
+
+    //Story EXP05
+    //sell lottery
+    public void sellLottery(Long id) {
+        userLotteryRepo.deleteById(id);
+    }
+
     //Story EXP04
+    //user see admin lottery before buy
     public List<String> userGetAllTickets() {
         return userLotteryRepo.listAllTicket();
     }

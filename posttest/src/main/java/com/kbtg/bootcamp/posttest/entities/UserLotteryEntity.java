@@ -10,9 +10,9 @@ public class UserLotteryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JsonProperty("userId")
+    @JsonProperty("user_id")
     private String userId;
-    @JsonProperty("ticketId")
+    @JsonProperty("ticket_id")
     private String ticketId;
     private int price;
     private int amount;

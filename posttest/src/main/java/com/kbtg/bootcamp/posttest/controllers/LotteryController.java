@@ -3,12 +3,9 @@ package com.kbtg.bootcamp.posttest.controllers;
 import com.kbtg.bootcamp.posttest.entities.LotteryEntity;
 import com.kbtg.bootcamp.posttest.services.LotteryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 public class LotteryController {
@@ -19,15 +16,10 @@ public class LotteryController {
         this.lotteryService = lotteryService;
     }
 
-//    @PostMapping("/admin/lotteries")
-//    public LotteryEntity addLotteryEntity(@RequestBody LotteryEntity ticket) {
-//        return lotteryService.addLotteryEntity(ticket);
-//    }
-
-    //test show all lottery details
-    @RequestMapping("/api/lotteries")
-    public List<LotteryEntity> getLottery() {
-        return lotteryService.getAllLotteries();
+    //show lottery table1
+    @RequestMapping("/lottery")
+    public List<LotteryEntity> showTable1() {
+        return lotteryService.showTable1();
     }
 
     //for user who wants to list all lottery ticket to choose and buy
@@ -55,10 +47,17 @@ public class LotteryController {
     public LotteryEntity createLottery(@RequestBody LotteryEntity lotteryEntity) {
         return lotteryService.createLottery(lotteryEntity);
     }
+//    @PostMapping("/admin/post")
+//    public ResponseEntity<String> createLottery(@RequestBody LotteryEntity lotteryEntity) {
+//        LotteryEntity createdLottery = lotteryService.createLottery(lotteryEntity);
+//        String responseBody = "'ticket': " + createdLottery.getTicket();
+//        return ResponseEntity.status(HttpStatus.CREATED).body(responseBody);
+//    }
+
     //read
     @GetMapping("/admin/get")
     public List<LotteryEntity> getAllLotteries() {
-        return lotteryService.getAllLotteries();
+        return lotteryService.showTable1();
     }
     @GetMapping("/admin/get/{id}")
     public LotteryEntity getLotteryById(@PathVariable("id") Long id) {
