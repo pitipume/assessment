@@ -43,23 +43,4 @@ public class SecurityConfig {
             return new BCryptPasswordEncoder();
         }
 
-//    @Bean
-//    public InMemoryUserDetailsManager userDetailsService() {
-//        UserDetails user = User.withDefaultPasswordEncoder()
-//                .username("admin")
-//                .password("password")
-//                .roles("ADMIN")
-//                .build();
-//        return new InMemoryUserDetailsManager(user);
-//    }
-//
-//
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.authorizeHttpRequests()
-//                .requestMatchers("/users/**").permitAll()
-//                .requestMatchers("/admin/**").authenticated();
-//        return http.build();
-//    }
-
 }
