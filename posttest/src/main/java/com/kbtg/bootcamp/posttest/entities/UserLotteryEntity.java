@@ -2,40 +2,38 @@ package com.kbtg.bootcamp.posttest.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Setter
-@Getter
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "lottery")
-public class LotteryEntity {
+@Table(name = "user_ticket")
+public class UserLotteryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JsonProperty("ticket")
-    private String ticket;
-    @JsonProperty("price")
+    @JsonProperty("user_id")
+    private String userId;
+    @JsonProperty("ticket_id")
+    private String ticketId;
     private int price;
-    @JsonProperty("amount")
     private int amount;
 
     public Long getId() {
         return id;
     }
-    public void setId() {
+    public void setId(Long id) {
         this.id = id;
     }
-    public String getTicket() {
-        return ticket;
+    public String getUserId() {
+        return userId;
     }
-    public void setTicket(String ticket) {
-        this.ticket = ticket;
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+    public String getTicketId() {
+        return ticketId;
+    }
+    public void setTicketId(String ticketId) {
+        this.ticketId = ticketId;
     }
     public int getPrice() {
         return price;
@@ -49,5 +47,4 @@ public class LotteryEntity {
     public void setAmount(int amount) {
         this.amount = amount;
     }
-
 }

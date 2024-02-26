@@ -6,27 +6,54 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LotteryService {
+
+    //--------------------------------------------------Intro-----------------------------------------------------------
+
+    private final LotteryRepo lotteryRepo;
     @Autowired
-    LotteryRepo lotteryRepo;
-    public List<LotteryEntity> getAllLotteries() {
+    public LotteryService(LotteryRepo lotteryRepo) {
+        this.lotteryRepo = lotteryRepo;
+    }
+
+    //show lottery table1
+    public List<LotteryEntity> showTable1() {
         return lotteryRepo.findAll();
     }
-    public LotteryEntity getOneLottery(long id) {
-//        return lotteryRepo.getReferenceById(id).get();
-        return lotteryRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Lottery not found"));
+
+    //--------------------------------------------basic CRUD for admin--------------------------------------------------
+
+    //create
+    public LotteryEntity createLottery(LotteryEntity lotteryEntity) {
+        return lotteryRepo.save(lotteryEntity);
     }
-    public String addOneLottery(LotteryEntity lottery) {
-        lotteryRepo.save(lottery);
-        return "Success";
+    //read
+    public LotteryEntity getLotteryById(Long id) {
+        Optional<LotteryEntity> lotteryOptional = lotteryRepo.findById(id);
+        return lotteryOptional.orElse(null);
     }
-    public void updateOneLottery(long id, LotteryEntity lottery) {
-        lotteryRepo.save(lottery);
+    //update
+    public LotteryEntity updateLottery(Long id, LotteryEntity updatedLottery) {
+        if (lotteryRepo.existsById(id)) {
+            updatedLottery.setId();
+            return  lotteryRepo.save(updatedLottery);
+        } else {
+            return null;
+        }
     }
-    public void deleteOneLottery(Long id) {
+    //delete
+    public void deleteLottery(Long id) {
         lotteryRepo.deleteById(id);
     }
+
+
+    //------------------------------------------------------Story EXP---------------------------------------------------
+    //Story EXP02
+    public List<String> getAllTickets() {
+        return lotteryRepo.findAllTicket();
+    }
+
 }
