@@ -29,8 +29,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-//	implementation 'org.springframework.boot:spring-boot-starter-security'
-//	implementation 'org.apache.tomcat:tomcat-util:10.0.14'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 tasks.named('test') {
