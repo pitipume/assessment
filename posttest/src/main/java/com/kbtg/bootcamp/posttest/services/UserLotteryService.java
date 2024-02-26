@@ -14,6 +14,8 @@ import java.util.Optional;
 
 @Service
 public class UserLotteryService {
+
+    //-----------------------------------------------------Intro--------------------------------------------------------
     private final UserLotteryRepo userLotteryRepo;
     @Autowired
     public UserLotteryService(UserLotteryRepo userLotteryRepo) {
@@ -25,6 +27,11 @@ public class UserLotteryService {
         return userLotteryRepo.findAll();
     }
 
+    //-------------------------------------------Basic CRUD for user---------------------------------------------------
+
+
+
+    //------------------------------------------------Story EXP---------------------------------------------------------
     //Story EXP03
     //buy lottery
     public UserLotteryEntity buyLottery(UserLotteryEntity userLotteryEntity) {
@@ -36,16 +43,15 @@ public class UserLotteryService {
 //        return new LotteryResponse("1");
 //    }
 
-    //Story EXP05
-    //sell lottery
-    public void sellLottery(Long id) {
-        userLotteryRepo.deleteById(id);
-    }
-
     //Story EXP04
-    //user see admin lottery before buy
     public List<String> userGetAllTickets() {
         return userLotteryRepo.listAllTicket();
+    }
+
+    //Story EXP05
+    //user sell lottery
+    public void sellLottery(Long id) {
+        userLotteryRepo.deleteById(id);
     }
 
 //    public List<String> getAllUserLotteryTicketIds(String userId) {

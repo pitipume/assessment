@@ -8,7 +8,11 @@ import java.util.List;
 
 public interface LotteryRepo extends JpaRepository<LotteryEntity, Long> {
 
-    //for user who wants to list all lottery ticket to choose and buy
+    //Story EXP01
+//    @Query("SELECT l.ticket FROM LotteryEntity l ORDER BY l.id DESC")
+//    List<String> findLatestTicket();
+
+    //Story EXP02
     @Query("SELECT l.ticket FROM LotteryEntity l")
     List<String> findAllTicket();
 

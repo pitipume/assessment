@@ -13,6 +13,8 @@ import java.util.List;
 
 @RestController
 public class UserLotteryController {
+
+    //-----------------------------------------------Intro-------------------------------------------------------------
     private final UserLotteryService userLotteryService;
     @Autowired
     public UserLotteryController(UserLotteryService userLotteryService) {
@@ -25,22 +27,19 @@ public class UserLotteryController {
         return userLotteryService.showTable2();
     }
 
+    //-------------------------------------------Basic CRUD for user---------------------------------------------------
+
+
+
+    //------------------------------------------------Story EXP---------------------------------------------------------
     //Story EXP03
-    //buy lottery
-    @PostMapping("/users/post")
+    //user buy lottery
+    @PostMapping("/users/{userId}/lotteries/{ticketId}")
     public UserLotteryEntity buyLottery(@RequestBody UserLotteryEntity userLotteryEntity) {
         return userLotteryService.buyLottery(userLotteryEntity);
     }
 
-    //Story EXP05
-    //sell lottery
-    @DeleteMapping("/users/{userId}/lotteries/{ticketId}")
-    public void sellLottery(@PathVariable("id") Long id) {
-        userLotteryService.sellLottery(id);
-    }
-
     //Story EXP04
-    //user see admin lottery before buy
     @GetMapping("/users/{userId}/lotteries")
     public UserLotteryController.UserLotteryResponse userGetLotteryTickets() {
         List<String> ticketIds = userLotteryService.userGetAllTickets();
@@ -59,6 +58,12 @@ public class UserLotteryController {
         }
     }
 
+    //Story EXP05
+    //user sell lottery
+    @DeleteMapping("/users/{userId}/lotteries/{ticketId}")
+    public void sellLottery(@PathVariable("id") Long id) {
+        userLotteryService.sellLottery(id);
+    }
 
 
 //    @GetMapping("/users/{userId}/lotteries")

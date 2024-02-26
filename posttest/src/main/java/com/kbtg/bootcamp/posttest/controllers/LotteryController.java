@@ -3,6 +3,8 @@ package com.kbtg.bootcamp.posttest.controllers;
 import com.kbtg.bootcamp.posttest.entities.LotteryEntity;
 import com.kbtg.bootcamp.posttest.services.LotteryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,6 +12,7 @@ import java.util.List;
 @RestController
 public class LotteryController {
 
+    //---------------------------------------------------Intro----------------------------------------------------------
     private final LotteryService lotteryService;
     @Autowired
     public LotteryController(LotteryService lotteryService) {
@@ -22,38 +25,12 @@ public class LotteryController {
         return lotteryService.showTable1();
     }
 
-    //for user who wants to list all lottery ticket to choose and buy
-    @GetMapping("/lotteries")
-    public LotteryResponse getLotteryTickets() {
-        List<String> tickets = lotteryService.getAllTickets();
-        return new LotteryResponse(tickets);
-    }
-    private static class LotteryResponse {
-        private List<String> tickets;
-        public LotteryResponse(List<String> tickets) {
-            this.tickets = tickets;
-        }
-        public List<String> getTickets() {
-            return tickets;
-        }
-        public void setTickets(List<String> tickets) {
-            this.tickets = tickets;
-        }
-    }
-
-    //basic CRUD for admin
+    //-------------------------------------------basic CRUD for admin---------------------------------------------------
     //create
     @PostMapping("/admin/post")
     public LotteryEntity createLottery(@RequestBody LotteryEntity lotteryEntity) {
         return lotteryService.createLottery(lotteryEntity);
     }
-//    @PostMapping("/admin/post")
-//    public ResponseEntity<String> createLottery(@RequestBody LotteryEntity lotteryEntity) {
-//        LotteryEntity createdLottery = lotteryService.createLottery(lotteryEntity);
-//        String responseBody = "'ticket': " + createdLottery.getTicket();
-//        return ResponseEntity.status(HttpStatus.CREATED).body(responseBody);
-//    }
-
     //read
     @GetMapping("/admin/get")
     public List<LotteryEntity> getAllLotteries() {
@@ -76,7 +53,44 @@ public class LotteryController {
 
 
 
+    // -------------------------------------------------Story EXP------------------------------------------------------
+    //Story EXP01
+//    @PostMapping("/admin/lotteries")
+//    public ResponseEntity<String> addLottery(@RequestBody LotteryEntity lotteryEntity) {
+//        LotteryEntity createdLottery = lotteryService.createLottery(lotteryEntity);
+//        String responseBody = "'ticket': " + createdLottery.getTicket();
+//        return ResponseEntity.status(HttpStatus.CREATED).body(responseBody);
+//    }
+    @PostMapping("/admin/lotteries")
+    public ResponseEntity<String> addLottery(@RequestBody LotteryEntity lotteryEntity) {
+        lotteryService.createLottery(lotteryEntity);
+        return ResponseEntity.status(HttpStatus.CREATED).body("{\"ticket\": \"" + lotteryEntity.getTicket() + "\"}");
+    }
 
+    //Story EXP02
+    @GetMapping("/lotteries")
+    public LotteryResponse getLotteryTickets() {
+        List<String> tickets = lotteryService.getAllTickets();
+        return new LotteryResponse(tickets);
+    }
+    private static class LotteryResponse {
+        private List<String> tickets;
+        public LotteryResponse(List<String> tickets) {
+            this.tickets = tickets;
+        }
+        public List<String> getTickets() {
+            return tickets;
+        }
+        public void setTickets(List<String> tickets) {
+            this.tickets = tickets;
+        }
+    }
+
+
+
+
+
+//--------------------------------------------------------END-----------------------------------------------------------
 
 //    @RequestMapping("/admin/lotteries/{id}")
 //    public LotteryEntity getLottery(@PathVariable long id) {
