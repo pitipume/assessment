@@ -6,9 +6,13 @@ import com.kbtg.bootcamp.posttest.entities.LotteryEntity;
 import com.kbtg.bootcamp.posttest.entities.UserLotteryEntity;
 import com.kbtg.bootcamp.posttest.services.UserLotteryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -34,9 +38,17 @@ public class UserLotteryController {
     //------------------------------------------------Story EXP---------------------------------------------------------
     //Story EXP03
     //user buy lottery
+//    @PostMapping("/users/{userId}/lotteries/{ticketId}")
+//    public UserLotteryEntity buyLottery(@RequestBody UserLotteryEntity userLotteryEntity) {
+//        return userLotteryService.buyLottery(userLotteryEntity);
+//    }
+    //Story EXP03
     @PostMapping("/users/{userId}/lotteries/{ticketId}")
-    public UserLotteryEntity buyLottery(@RequestBody UserLotteryEntity userLotteryEntity) {
-        return userLotteryService.buyLottery(userLotteryEntity);
+    public ResponseEntity<UserLotteryEntity> buyLotteryTicket(@PathVariable("userId") String userId, @PathVariable("ticketId") String ticketId) {
+        int price = 80;
+        int amount = 1;
+        UserLotteryEntity boughtTicket = userLotteryService.buyLottery(userId, ticketId, price, amount);
+        return new ResponseEntity<>(boughtTicket, HttpStatus.CREATED);
     }
 
     //Story EXP04

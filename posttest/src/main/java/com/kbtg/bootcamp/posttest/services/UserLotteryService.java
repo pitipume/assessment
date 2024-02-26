@@ -34,14 +34,23 @@ public class UserLotteryService {
     //------------------------------------------------Story EXP---------------------------------------------------------
     //Story EXP03
     //buy lottery
-    public UserLotteryEntity buyLottery(UserLotteryEntity userLotteryEntity) {
-        return userLotteryRepo.save(userLotteryEntity);
-    }
+//    public UserLotteryEntity buyLottery(UserLotteryEntity userLotteryEntity) {
+//        return userLotteryRepo.save(userLotteryEntity);
+//    }
     //test buy lottery
 //    public LotteryResponse buyLotteryTicket(String userId, String ticketId) {
 //        // Implement logic to buy lottery ticket and return response
 //        return new LotteryResponse("1");
 //    }
+    //Story EXP03
+    public UserLotteryEntity buyLottery(String userId, String ticketId, int price, int amount) {
+        UserLotteryEntity userLotteryEntity = new UserLotteryEntity();
+        userLotteryEntity.setUserId(userId);
+        userLotteryEntity.setTicketId(ticketId);
+        userLotteryEntity.setPrice(price);
+        userLotteryEntity.setAmount(amount);
+        return userLotteryRepo.save(userLotteryEntity);
+    }
 
     //Story EXP04
     public List<String> userGetAllTickets() {
