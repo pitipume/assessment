@@ -43,7 +43,7 @@ public class LotteryControllerTests {
     @Test
     public void testAddLottery() {
         LotteryEntity lotteryEntity = new LotteryEntity();
-        lotteryEntity.setTicket("ABC123");
+        lotteryEntity.setTicket("test1");
 
         ResponseEntity<String> expectedResponse = ResponseEntity.status(HttpStatus.CREATED).body("{\"ticket\": \"ABC123\"}");
 
