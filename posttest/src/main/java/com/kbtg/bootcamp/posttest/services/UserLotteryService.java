@@ -46,10 +46,10 @@ public class UserLotteryService {
     }
 
     //Story EXP05
-    //user sell lottery
     public void sellBackLottery(String userId, String ticketId) {
         userLotteryRepo.deleteByUserIdAndTicketId(userId, ticketId);
     }
+
     //Story EXP05 - sell by id
     public void sellLottery(Long id) {
         userLotteryRepo.deleteById(id);

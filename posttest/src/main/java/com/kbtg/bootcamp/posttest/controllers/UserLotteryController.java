@@ -76,7 +76,6 @@ public class UserLotteryController {
     }
 
     //Story EXP05
-    //user sell lottery
     @DeleteMapping("/users/{userId}/lotteries/{ticketId}")
     public ResponseEntity<StoryExp05Response> sellBackLotteryTicket(@PathVariable("userId") String userId, @PathVariable("ticketId") String ticketId) {
         userLotteryService.sellBackLottery(userId, ticketId);
@@ -95,6 +94,7 @@ public class UserLotteryController {
             this.ticketId = ticketId;
         }
     }
+
     //Story EXP05 - sell by id
     @DeleteMapping("/users/{id}")
     public void sellLottery(@PathVariable("id") Long id) {
